@@ -1,21 +1,18 @@
-const http = require('http');
 const express = require('express');
 const morgan = require('morgan');
-const MessagingResponse = require('twilio').twiml.MessagingResponse;
 
 const app = express();
 
+const port = 1337
+
 app.use(morgan('dev'));
 
-app.post('/sms', (req, res) => {
-  const twiml = new MessagingResponse();
+app.get('/test', (req, res) => {
+  console.log('server get test');
+  res.send();
+})
 
-  twiml.message('The Robots are coming! Head for the hills!');
 
-  res.writeHead(200, {'Content-Type': 'text/xml'});
-  res.end(twiml.toString());
-});
-
-http.createServer(app).listen(1337, () => {
-  console.log('Express server listening on port 1337');
-});
+app.listen(port, () => {
+  console.log('Server listening on port', port)
+})

@@ -17,7 +17,7 @@ const DATA = [
   },
 ];
 
-function Item({ title }) {
+function Student({ title }) {
   return (
     <View style={styles.item}>
       <Text style={styles.title}>{title}</Text>
@@ -31,7 +31,7 @@ export default function StudentList() {
     <SafeAreaView style={styles.container}>
       <FlatList
         data={DATA}
-        renderItem={({ item }) => <Item title={item.title} />}
+        renderItem={({ item }) => <Student title={item.title} />}
         keyExtractor={item => item.id}
       />
     </SafeAreaView>
