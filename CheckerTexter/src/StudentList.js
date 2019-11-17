@@ -18,7 +18,7 @@ import Constants from 'expo-constants';
 //   },
 // ];
 
-const DATA = [
+const students = [
   {
     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
     firstName: 'Student1',
@@ -48,11 +48,11 @@ function Student({ firstName, lastName }) {
 }
 
 
-export default function StudentList() {
+export default function StudentList(props) {
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
-        data={DATA}
+        data={props.students}
         renderItem={({ item }) => 
           <Student firstName={item.firstName} lastName={item.lastName} />
         }
