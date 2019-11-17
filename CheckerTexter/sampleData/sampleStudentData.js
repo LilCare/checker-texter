@@ -18,5 +18,3 @@ const students = [
       phoneNumber: '+14025987648'
     },
   ];
-
-  export default students;
