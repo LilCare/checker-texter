@@ -1,11 +1,13 @@
 import React from 'react';
 import { SafeAreaView, View, FlatList, StyleSheet, Text } from 'react-native';
 import Constants from 'expo-constants';
+import ScoreSelect2 from './ScoreSelect2.js';
 
 function Student({ firstName, lastName }) {
   return (
     <View style={styles.item}>
-      <Text style={styles.title}>{firstName} {lastName}</Text>
+      <Text style={styles.student}>{firstName} {lastName}</Text>
+      <ScoreSelect2 style={styles.score}/>
     </View>
   );
 }
@@ -30,13 +32,19 @@ const styles = StyleSheet.create({
     marginTop: Constants.statusBarHeight,
   },
   item: {
-    backgroundColor: '#f9c2ff',
-    width: 200,
-    padding: 4,
+    backgroundColor: '#81ccb0',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: 325,
     marginVertical: 8,
-    marginHorizontal: 16,
   },
-  title: {
+  student: {
     fontSize: 16,
+    flex: .8,
+    marginHorizontal: 4,
+    padding: 4,
   },
+  score: {
+    flex: .2,
+  }
 });

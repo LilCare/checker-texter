@@ -3,3 +3,9 @@
 /server/node_modules
 
 /CheckerTexter/node_modules
+
+/CheckerTexter/android
+
+/CheckerTexter/index.js
+
+/CheckerTexter/ios/
