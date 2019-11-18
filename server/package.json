@@ -5,15 +5,19 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "schema": "psql postgres < ./data/schema.sql",
+    "seed": "node data/seed.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bluebird": "^3.7.1",
     "express": "^4.17.1",
     "morgan": "^1.9.1",
     "nodemon": "^1.19.4",
+    "pg": "^7.12.1",
     "twilio": "^3.37.1"
   }
 }
