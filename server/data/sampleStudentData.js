@@ -1,4 +1,4 @@
-const students = [
+const sampleStudents = [
     {
       id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
       firstName: 'Student1',
@@ -19,7 +19,7 @@ const students = [
     },
   ];
 
-  const DATA = [
+  const SAMPLEDATA = [
     {
       id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
       title: 'Student 1',
@@ -35,8 +35,8 @@ const students = [
   ];
 
   const sampleData = {
-      students,
-      DATA
+      sampleStudents,
+      SAMPLEDATA
   }
 
-  export default students;
+  export default sampleStudents;
