@@ -34,7 +34,7 @@ export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Checker Texter Grades</Text>
+        <Text style={styles.title}>CheckerTexter</Text>
         <StudentList students={this.state.students}/>
       </View>
     );
@@ -44,9 +44,18 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: Constants.statusBarHeight,
     backgroundColor: '#fff',
     // alignItems: 'center',
     justifyContent: 'center',
   },
+  title: {
+    marginTop: Constants.statusBarHeight,
+    padding: 8,
+    letterSpacing: 3,
+    fontSize: 22,
+    fontWeight: 'bold',
+    alignContent: 'center',
+    backgroundColor: '#182f40', 
+    color: '#afbab5',
+  }
 });

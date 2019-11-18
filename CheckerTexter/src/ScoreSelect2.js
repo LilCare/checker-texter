@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Modal, Text, TouchableHighlight, View, Alert, StyleSheet, Picker} from 'react-native';
+import {Modal, Text, TouchableOpacity, View, Alert, StyleSheet, Picker} from 'react-native';
 
 class ScoreSelect2 extends Component {
   state = {
@@ -13,7 +13,7 @@ class ScoreSelect2 extends Component {
 
   render() {
     return (
-      <View style={styles.item}>
+      <View style={styles.scoreContainer}>
         <Modal
           animationType="slide"
           transparent={false}
@@ -25,34 +25,34 @@ class ScoreSelect2 extends Component {
             <View style={styles.picker}>     
               <Picker
                 selectedValue={this.state.selected}
-                style={{height: 50, width: 100}}
+                style={{width: 100, justifyContent: 'flex-start'}}
                 onValueChange={(itemValue, itemIndex) =>
                     this.setState({selected: itemValue})
                 }>
 
                 <Picker.Item label="Complete" value="complete" />
-                <Picker.Item label="Unfinished" value="unfinished" />
+                <Picker.Item label="Semi-complete" value="semi-complete" />
                 <Picker.Item label="Incomplete" value="incomplete" />
                 <Picker.Item label="Absent" value="absent" />
 
               </Picker>
 
-              <TouchableHighlight
+              <TouchableOpacity
                 onPress={() => {
                   this.setModalVisible(!this.state.modalVisible);
                 }}>
-                <Text>Hide Modal</Text>
-              </TouchableHighlight>
+                <Text style={[styles.font, styles.select]}>Done with selection</Text>
+              </TouchableOpacity>
             </View>
           </View>
         </Modal>
 
-        <TouchableHighlight
+        <TouchableOpacity
           onPress={() => {
             this.setModalVisible(true);
           }}>
-          <Text>{this.state.selected}</Text>
-        </TouchableHighlight>
+          <Text style={styles.font}>{this.state.selected}</Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -60,15 +60,27 @@ class ScoreSelect2 extends Component {
 
 const styles = StyleSheet.create({
     picker: {
-        backgroundColor: '#f9c2cc',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#afbab5', 
+        // color: '#afbab5',
+    },
+    scoreContainer: {
+        backgroundColor: '#849cad',
+        backgroundColor: '#99b5c9',
+    },
+    font: {
+        fontSize: 14,
+        letterSpacing: 1.5,
+        padding: 8,
+
+    },
+    select: {
+        fontSize: 20,
+        padding: 8,
+        color: '#182f40',
         fontWeight: 'bold',
-        width: 75,
-        padding: 4,
-    },
-    item: {
-        backgroundColor: '#bbc4c0',
-        padding: 4,
-    },
+    }
 })
 
 export default ScoreSelect2;
