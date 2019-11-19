@@ -2,29 +2,9 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Constants from 'expo-constants';
 import StudentList from './src/StudentList.js';
+import Indicator from './src/ActivityIndicator.js';
 
-const sampleStudents = [
-  {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    'first_name': 'Student 1',
-    'last_name': 'One',
-    'phone_number': '+14025987648'
-  },
-  {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    'first_name': 'Student 2',
-    'last_name': 'Two',
-    'phone_number': '+14025987648'
-  },
-  {
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    'first_name': 'Student 3',
-    'last_name': 'Three',
-    'phone_number': '+14025987648'
-  },
-];
-
-export default class App extends Component {
+class App extends Component {
   state = { students: [] };
 
   componentDidMount() {
@@ -46,12 +26,14 @@ export default class App extends Component {
         {readyToRender ? (
           <StudentList students={this.state.students}/>
         ) : (
-          <StudentList students={sampleStudents}/>
+          <Indicator/>
         )}
       </View>
     );
   }
 }
+
+// <StudentList students={sampleStudents}/>
 
 const styles = StyleSheet.create({
   container: {
@@ -80,3 +62,5 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
+
+export default App;

@@ -1,12 +1,12 @@
 import React from 'react';
 import { SafeAreaView, View, FlatList, StyleSheet, Text } from 'react-native';
-import ScoreSelect2 from './ScoreSelect2.js';
+import ScoreSelect from './ScoreSelect.js';
 
 function Student({ firstName, lastName }) {
   return (
     <View style={styles.item}>
       <Text style={styles.student}>{firstName} {lastName}</Text>
-      <ScoreSelect2 style={styles.score}/>
+      <ScoreSelect style={styles.score}/>
     </View>
   );
 }
