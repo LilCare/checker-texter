@@ -5,11 +5,15 @@ const authToken = twilioInfo.authToken;
 const twilioPhone = twilioInfo.twilioPhone;
 const client = require('twilio')(accountSid, authToken);
 
+const texter = (phoneNumber, firstName, score) => {
+  console.log('inside texter with: ', arguments);
+  return client.messages
+    .create({
+      body: `Just a heads up: ${firstName}'s homework is ${score}. Thanks for checking in on them later!`,
+      from: twilioPhone,
+      to: phoneNumber // E164 format: [+][country code][phone number including area code]
+    })
+    .then(message => console.log(message.sid));
+}
 
-client.messages
-  .create({
-     body: 'This is the ship that made the Kessel Run in fourteen parsecs?',
-     from: twilioPhone,
-     to: '+14025987648' // E164 format: [+][country code][phone number including area code]
-   })
-  .then(message => console.log(message.sid));
+module.exports = texter;

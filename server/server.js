@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 const cors = require('cors');
 const Promise = require('bluebird');
 const db = require('./data/index.js');
+const texter = require('./twilio/send_sms.js');
 
 const port = 19002
 
@@ -60,17 +61,16 @@ app.post('/api/assignment/:id/scores', jsonParser, (req, res) => {
 app.post('/api/assignment/:id/texts', jsonParser, (req, res) => {
   const assignmentId = req.params.id;
   let scores = req.body.scores; // array of scores to text home about
-  let textInfo = [];
   Promise.each(scores, (score) => {
     return db.getScoreInfo(assignmentId, score, (err, response) => {
       if (err) {
-          console.log('err passed to getScoreInfo callback: ', err);
-          return err;
+        console.log('err passed to getScoreInfo callback: ', err);
+        return err;
       } else {
-          console.log('response sent back to server: ', response)
-          textInfo = textInfo.concat(response);
-          console.log(score, ' textInfo: ', textInfo);
-          return response;
+        response.forEach((text) => {
+          texter(text['phone_number'], text['first_name'], text['score']);
+        })
+        return 'done';
       }
     })
   })
