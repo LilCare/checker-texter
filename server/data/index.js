@@ -80,7 +80,7 @@ const insertScore = (studentId, assignmentId, score, callback) => {
       .catch(e => callback(e));
 }
 
-const getScoreInfo = (assignmentId, studentId, callback) => {
+const getScoreInfo = (assignmentId, score, callback) => {
     // Sample query return from db:
     // first_name | phone_number |  score   
     //------------+--------------+----------
@@ -88,13 +88,13 @@ const getScoreInfo = (assignmentId, studentId, callback) => {
     const text = `SELECT students.first_name, students.phone_number, scores.score
                   FROM students INNER JOIN scores
                   ON students.id = scores.student_id
-                  WHERE assignment_id = $1 AND student_id = $2`;
-    const values = [assignmentId, studentId];
+                  WHERE assignment_id = $1 AND score = $2`;
+    const values = [assignmentId, score];
   
     pool
       .query(text, values)
       .then(res => {
-        console.log('insert score response: ', res.rows);
+        console.log('get scores response: ', res.rows);
         return callback(null, res.rows);
       })
       .catch(e => callback(e));

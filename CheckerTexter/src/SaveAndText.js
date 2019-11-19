@@ -1,8 +1,12 @@
 import React from 'react';
 import {Modal, Text, TouchableOpacity, View, StyleSheet} from 'react-native';
 
-function SaveAndText ({visible, step, switchModal}) {
+function SaveAndText ({visible, step, switchModal, saveScores}) {
   // step can equal 'save', 'text', complete
+  let stepFunction = () => {};
+  if (step === 'save') {
+      stepFunction = saveScores;
+  }
   return (
     <View >
       <Modal
@@ -16,6 +20,7 @@ function SaveAndText ({visible, step, switchModal}) {
             <TouchableOpacity
             onPress={() => {
                 switchModal();
+                stepFunction();
             }}>
             <Text style={[styles.font, styles.select]}>{step}</Text>
             </TouchableOpacity>

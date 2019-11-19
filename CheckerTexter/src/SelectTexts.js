@@ -57,7 +57,7 @@ class SelectTexts extends Component {
     }
 
     textFamilies(toText) {
-
+      // generate an array of scores to text
     }
 
     select(value) {
@@ -97,7 +97,6 @@ class SelectTexts extends Component {
                 title="Save Scores and Text"
                 color="#afbab5"
                 onPress={() => {
-                    this.props.saveScores();
                     this.setModalVisible(true);
                     // Alert.alert('Save and text');
                 }}
@@ -109,6 +108,7 @@ class SelectTexts extends Component {
               visible={this.state.modalVisible} 
               step={this.state.step[0]} 
               switchModal={this.switchModal.bind(this)}
+              saveScores={this.props.saveScores}
             />
             
           </View>

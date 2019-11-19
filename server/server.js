@@ -42,12 +42,10 @@ app.get('/api/class/:id', (req, res) => {
   })
 })
 
-
 app.post('/api/assignment/:id/scores', jsonParser, (req, res) => {
   const assignmentId = req.params.id;
   //let students = JSON.parse(req.body);
   let students = req.body.students;
-  console.log(students[0]);
 
   Promise.each(students, (student) => {
     let studentId = student.id;
@@ -59,6 +57,26 @@ app.post('/api/assignment/:id/scores', jsonParser, (req, res) => {
   
 })
 
+app.post('/api/assignment/:id/texts', jsonParser, (req, res) => {
+  const assignmentId = req.params.id;
+  let scores = req.body.scores; // array of scores to text home about
+  let textInfo = [];
+  Promise.each(scores, (score) => {
+    return db.getScoreInfo(assignmentId, score, (err, response) => {
+      if (err) {
+          console.log('err passed to getScoreInfo callback: ', err);
+          return err;
+      } else {
+          console.log('response sent back to server: ', response)
+          textInfo = textInfo.concat(response);
+          console.log(score, ' textInfo: ', textInfo);
+          return response;
+      }
+    })
+  })
+  .then((results) => res.send(results))
+  .catch((err) => res.send(err));
+})
 
 app.listen(port, () => {
   console.log('Server listening on port', port)

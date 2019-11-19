@@ -18,8 +18,8 @@ CREATE TABLE students (
   last_name      VARCHAR    NOT NULL,
   phone_number   VARCHAR    NOT NULL,
 
-  PRIMARY KEY (id),
-  FOREIGN KEY (class_id)      REFERENCES classes (id)
+  PRIMARY KEY (id)--,
+  -- FOREIGN KEY (class_id)      REFERENCES classes (id)
 );
 
 CREATE TABLE assignments (   
