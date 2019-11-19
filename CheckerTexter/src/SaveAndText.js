@@ -27,7 +27,6 @@ function SaveAndText ({visible, step, switchModal, saveScores, textFamilies, goB
         <View style={{marginTop: 22}}>
           <View style={styles.modal}>
 
-            <View>
               <TouchableOpacity
                 onPress={() => {
                     switchModal();
@@ -37,9 +36,8 @@ function SaveAndText ({visible, step, switchModal, saveScores, textFamilies, goB
                 >
                 <Text style={[styles.font, styles.select]}>{stepForwardText}</Text>
               </TouchableOpacity>
-            </View> 
-
-            <View style={{marginTop: 22}}>
+             
+            {(step === 'save' || step === 'text') && (
               <TouchableOpacity
                 onPress={() => {
                     goBack();
@@ -48,7 +46,7 @@ function SaveAndText ({visible, step, switchModal, saveScores, textFamilies, goB
                 >
                 <Text style={[styles.font, styles.select]}>Go back</Text>
               </TouchableOpacity>
-            </View>
+            )}
 
           </View>
         </View>
@@ -59,7 +57,7 @@ function SaveAndText ({visible, step, switchModal, saveScores, textFamilies, goB
 
 const styles = StyleSheet.create({
     modal: {
-        marginTop: 22,
+        marginTop: 20,
         height: 800,
         alignItems: 'center',
         justifyContent: 'center',
@@ -74,7 +72,7 @@ const styles = StyleSheet.create({
 
     },
     select: {
-        fontSize: 20,
+        fontSize: 18,
         padding: 16,
         color: '#182f40',
         color: '#afbab5',
