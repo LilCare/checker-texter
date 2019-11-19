@@ -6,7 +6,6 @@ const twilioPhone = twilioInfo.twilioPhone;
 const client = require('twilio')(accountSid, authToken);
 
 const texter = (phoneNumber, firstName, score) => {
-  console.log('inside texter with: ', arguments);
   return client.messages
     .create({
       body: `Just a heads up: ${firstName}'s homework is ${score}. Thanks for checking in on them later!`,

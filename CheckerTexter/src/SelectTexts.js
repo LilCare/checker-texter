@@ -56,8 +56,25 @@ class SelectTexts extends Component {
       this.setState({step: state});
     }
 
-    textFamilies(toText) {
+    textFamilies() {
       // generate an array of scores to text
+      let scores = [];
+      if (this.state.complete.selected) {
+        scores.push('complete');
+      } else if (this.state.semiComplete.selected) {
+        scores.push('semi-complete');
+      } else if (this.state.incomplete.selected) {
+        scores.push('incomplete');
+      }
+
+      fetch('http://localhost:19002/api/assignment/2/texts', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ scores })
+      });
     }
 
     select(value) {
@@ -109,6 +126,7 @@ class SelectTexts extends Component {
               step={this.state.step[0]} 
               switchModal={this.switchModal.bind(this)}
               saveScores={this.props.saveScores}
+              textFamilies={this.textFamilies.bind(this)}
             />
             
           </View>

@@ -74,7 +74,7 @@ app.post('/api/assignment/:id/texts', jsonParser, (req, res) => {
       }
     })
   })
-  .then((results) => res.send(results))
+  .then(() => res.send())
   .catch((err) => res.send(err));
 })
 
