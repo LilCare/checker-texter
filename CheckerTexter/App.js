@@ -6,17 +6,9 @@ import Indicator from './src/ActivityIndicator.js';
 import SelectTexts from './src/SelectTexts.js';
 
 class App extends Component {
-  state = { students: [] };
-
-  componentDidMount() {
-    return fetch('http://localhost:19002/api/class/1')
-      .then((response) => response.json())
-      .then((responseJson) => this.setState({ students: responseJson }))
-      .catch((error) => console.log(error));
-  }
 
   render() {
-    let readyToRender = (this.state.students.length > 0) ? true : false;
+    
     return (
       <View style={styles.container}>
         <Text style={styles.title}>CheckerTexter</Text>
@@ -24,12 +16,7 @@ class App extends Component {
           <Text style={styles.assignment}>Assignment: MVP</Text>
           <Text style={[styles.assignment, styles.date]}>Due Date: 11/19/19</Text>
         </View>
-        {readyToRender ? (
-          <StudentList students={this.state.students}/>
-        ) : (
-          <Indicator/>
-        )}
-        
+        <StudentList />   
       </View>
     );
   }

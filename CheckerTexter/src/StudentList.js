@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { SafeAreaView, View, FlatList, StyleSheet, Text } from 'react-native';
 import ScoreSelect from './ScoreSelect.js';
 import SelectTexts from './SelectTexts.js';
+import Indicator from './ActivityIndicator.js';
 
 function Student({ firstName, lastName }) {
   return (
@@ -12,19 +13,46 @@ function Student({ firstName, lastName }) {
   );
 }
 
-export default function StudentList(props) {
-  return (
-    <SafeAreaView style={styles.container}>
-      <FlatList
-        data={props.students}
-        renderItem={({ item }) => 
-          <Student firstName={item['first_name']} lastName={item['last_name']} />
-        }
-        keyExtractor={item => item.id.toString()}
-        ListFooterComponent={SelectTexts}
-      />
-    </SafeAreaView>
-  );
+class StudentList extends Component {
+  state = { students: [] };
+
+  componentDidMount() {
+    return fetch('http://localhost:19002/api/class/1')
+      .then((response) => response.json())
+      .then((responseJson) => this.setState({ students: responseJson }))
+      .catch((error) => console.log(error));
+  }
+
+  updateScores() {
+    
+  }
+
+  saveScores() {
+
+  }
+
+  textFamilies(toText) {
+
+  }
+  render() {
+    let readyToRender = (this.state.students.length > 0) ? true : false;
+    return (
+      <SafeAreaView style={styles.container}>
+        {readyToRender ? (
+          <FlatList
+            data={this.state.students}
+            renderItem={({ item }) => 
+              <Student firstName={item['first_name']} lastName={item['last_name']} />
+            }
+            keyExtractor={item => item.id.toString()}
+            ListFooterComponent={SelectTexts}
+          />
+        ) : (
+          <Indicator/>
+        )}
+      </SafeAreaView>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
@@ -51,3 +79,5 @@ const styles = StyleSheet.create({
     flex: .2,
   }
 });
+
+export default StudentList;

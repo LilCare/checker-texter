@@ -76,7 +76,7 @@ class SelectTexts extends Component {
               <Button
                 title="Save Scores and Text"
                 color='#afbab5'
-                onPress={() => Alert.alert('Cannot press this one')}
+                onPress={() => Alert.alert('Save and text')}
                 style={{ letterSpacing: 2 }}
               />
             </View>
