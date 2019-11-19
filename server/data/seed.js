@@ -4,8 +4,8 @@ const Promise = require('bluebird');
 
 const callback = (err, response) => {
     if (err) {
-        console.log('err passed to callback: ', error);
-        return error;
+        console.log('err passed to callback: ', err);
+        return err;
     } else {
         return response;
     }

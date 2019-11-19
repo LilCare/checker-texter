@@ -30,8 +30,14 @@ class StudentList extends Component {
     });
   }
 
-  saveScores() {
-
+  saveScores(assignmentId) {
+    fetch('http://localhost:19002/api/assignment/1/scores', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
   }
 
   textFamilies(toText) {

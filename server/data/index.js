@@ -65,9 +65,11 @@ const insertAssignment = (assignment, callback) => {
       .catch(e => callback(e));
 }
 
-const insertScore = (scoreInfo, callback) => {
+const insertScore = (studentId, assignmentId, score, callback) => {
     const text = `INSERT INTO scores (student_id, assignment_id, score) VALUES ($1, $2, $3)`;
-    const values = [scoreInfo.studentId, scoreInfo.assignmentId, scoreInfo.score];
+    const values = [studentId, assignmentId, score];
+
+
   
     pool
       .query(text, values)
@@ -97,6 +99,7 @@ const getScoreInfo = (assignmentId, studentId, callback) => {
       })
       .catch(e => callback(e));
 }
+
 
 module.exports = {
     getClasslist,

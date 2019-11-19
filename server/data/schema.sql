@@ -38,6 +38,8 @@ CREATE TABLE scores (
   score             VARCHAR,
 
   FOREIGN KEY   (student_id)    REFERENCES students (id),
-  FOREIGN KEY   (assignment_id) REFERENCES assignments (id)
+  FOREIGN KEY   (assignment_id) REFERENCES assignments (id),
+
+  EXCLUDE (student_id WITH = , assignment_id WITH =)
 );
 
