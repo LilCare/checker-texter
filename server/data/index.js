@@ -20,7 +20,7 @@ const getClasslist = (classId, callback) => {
   pool
     .query(text, values)
     .then(res => {
-      console.log('get classList response: ', res.rows);
+      // console.log('get classList response: ', res.rows);
       return callback(null, res.rows);
     })
     .catch(e => callback(e));

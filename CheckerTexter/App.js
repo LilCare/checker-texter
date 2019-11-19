@@ -22,7 +22,6 @@ class App extends Component {
   }
 }
 
-// <StudentList students={sampleStudents}/>
 
 const styles = StyleSheet.create({
   container: {

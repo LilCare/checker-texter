@@ -12,6 +12,7 @@ class ScoreSelect extends Component {
   }
 
   render() {
+    // Change the backgroundClor for score based on userSelection
     let scoreColor = '#99b5c9';
     if (this.state.selected === 'complete') {
       scoreColor = '#99b5c9';
@@ -22,6 +23,7 @@ class ScoreSelect extends Component {
     } else {
       scoreColor = '#AFBAB5';
     }
+    
     return (
       <View style={[styles.scoreContainer, {backgroundColor: scoreColor}]}>
         <Modal
@@ -34,9 +36,13 @@ class ScoreSelect extends Component {
               <Picker
                 selectedValue={this.state.selected}
                 style={{width: 100, justifyContent: 'flex-start'}}
-                onValueChange={(itemValue, itemIndex) =>
-                    this.setState({selected: itemValue})
-                }>
+                onValueChange={(itemValue, itemIndex) => {
+                  // Set state to render correctly
+                  this.setState({selected: itemValue});
+                  
+                  // Call updateScore function to store changed score for that student
+                  this.props.updateScores(this.props.index, itemValue);
+                }}>
 
                 <Picker.Item label="Complete" value="complete" />
                 <Picker.Item label="Semi-complete" value="semi-complete" />

@@ -4,11 +4,11 @@ import ScoreSelect from './ScoreSelect.js';
 import SelectTexts from './SelectTexts.js';
 import Indicator from './ActivityIndicator.js';
 
-function Student({ firstName, lastName }) {
+function Student({ firstName, lastName, index, updateScores }) {
   return (
     <View style={styles.item}>
       <Text style={styles.student}>{firstName} {lastName}</Text>
-      <ScoreSelect style={styles.score}/>
+      <ScoreSelect style={styles.score} index={index} updateScores={updateScores} />
     </View>
   );
 }
@@ -23,8 +23,11 @@ class StudentList extends Component {
       .catch((error) => console.log(error));
   }
 
-  updateScores() {
-    
+  updateScores(studentIndex, score) {
+    this.setState((oldState) => {
+      oldState.students[studentIndex].score = score;
+      return oldState;
+    });
   }
 
   saveScores() {
@@ -41,8 +44,8 @@ class StudentList extends Component {
         {readyToRender ? (
           <FlatList
             data={this.state.students}
-            renderItem={({ item }) => 
-              <Student firstName={item['first_name']} lastName={item['last_name']} />
+            renderItem={({ item, index }) => 
+              <Student firstName={item['first_name']} lastName={item['last_name']} index={index} updateScores={this.updateScores.bind(this)} />
             }
             keyExtractor={item => item.id.toString()}
             ListFooterComponent={SelectTexts}
