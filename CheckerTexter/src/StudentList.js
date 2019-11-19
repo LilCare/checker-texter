@@ -35,7 +35,7 @@ class StudentList extends Component {
   }
 
   saveScores(assignmentId) {
-    fetch('http://localhost:19002/api/assignment/1/scores', {
+    fetch('http://localhost:19002/api/assignment/2/scores', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -45,9 +45,6 @@ class StudentList extends Component {
     });
   }
 
-  textFamilies(toText) {
-
-  }
   render() {
     let readyToRender = (this.state.students.length > 0) ? true : false;
     return (

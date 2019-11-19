@@ -63,10 +63,3 @@ app.post('/api/assignment/:id/scores', jsonParser, (req, res) => {
 app.listen(port, () => {
   console.log('Server listening on port', port)
 })
-
-//fetch('http://localhost:19002/api/class/1', {
-  //     method: 'GET'
-  //   })
-  //     .then((response) => response.json())
-  //     .then((students) => this.setState({ students }))
-  //     .catch((err) => console.log(err));

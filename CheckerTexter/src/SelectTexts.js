@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { View, Alert, StyleSheet, Button } from 'react-native';
+import SaveAndText from './SaveAndText.js';
 
 const Separator = () => {
     return <View style={styles.separator} />;
@@ -38,6 +39,25 @@ class SelectTexts extends Component {
             textColor: ['#5F6060', 'black'],
             selected: false,
         },
+        modalVisible: false,
+        step: ['save', 'text', 'complete']
+    }
+
+    setModalVisible(visible) {
+      this.setState({modalVisible: visible});
+    }
+
+    switchModal() {
+      let state = this.state.step;
+      if (state[0] !== 'complete') {
+        let oldStep = state.shift(); // Only shift to next step if haven't gotten to 'complete'
+        state.push(oldStep);
+      }
+      this.setState({step: state});
+    }
+
+    textFamilies(toText) {
+
     }
 
     select(value) {
@@ -75,14 +95,21 @@ class SelectTexts extends Component {
             <View style={styles.text}>
               <Button
                 title="Save Scores and Text"
-                color='#afbab5'
+                color="#afbab5"
                 onPress={() => {
                     this.props.saveScores();
-                    Alert.alert('Save and text');
+                    this.setModalVisible(true);
+                    // Alert.alert('Save and text');
                 }}
                 style={{ letterSpacing: 2 }}
               />
             </View>
+
+            <SaveAndText 
+              visible={this.state.modalVisible} 
+              step={this.state.step[0]} 
+              switchModal={this.switchModal.bind(this)}
+            />
             
           </View>
         );     
