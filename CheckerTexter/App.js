@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import Constants from 'expo-constants';
 import StudentList from './src/StudentList.js';
 import Indicator from './src/ActivityIndicator.js';
+import SelectTexts from './src/SelectTexts.js';
 
 class App extends Component {
   state = { students: [] };
@@ -21,13 +22,14 @@ class App extends Component {
         <Text style={styles.title}>CheckerTexter</Text>
         <View style={styles.assignmentContainer}>
           <Text style={styles.assignment}>Assignment: MVP</Text>
-          <Text style={[styles.assignment, styles.date]}>Date: 11/19/19</Text>
+          <Text style={[styles.assignment, styles.date]}>Due Date: 11/19/19</Text>
         </View>
         {readyToRender ? (
           <StudentList students={this.state.students}/>
         ) : (
           <Indicator/>
         )}
+        
       </View>
     );
   }
@@ -61,6 +63,9 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
     fontWeight: 'bold',
   },
+  date: {
+    color: '#707774',
+  }
 });
 
 export default App;

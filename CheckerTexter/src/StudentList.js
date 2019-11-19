@@ -1,6 +1,7 @@
 import React from 'react';
 import { SafeAreaView, View, FlatList, StyleSheet, Text } from 'react-native';
 import ScoreSelect from './ScoreSelect.js';
+import SelectTexts from './SelectTexts.js';
 
 function Student({ firstName, lastName }) {
   return (
@@ -20,6 +21,7 @@ export default function StudentList(props) {
           <Student firstName={item['first_name']} lastName={item['last_name']} />
         }
         keyExtractor={item => item.id.toString()}
+        ListFooterComponent={SelectTexts}
       />
     </SafeAreaView>
   );

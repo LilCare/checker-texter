@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Modal, Text, TouchableOpacity, View, Alert, StyleSheet, Picker} from 'react-native';
+import {Modal, Text, TouchableOpacity, View, StyleSheet, Picker} from 'react-native';
 
 class ScoreSelect extends Component {
   state = {
