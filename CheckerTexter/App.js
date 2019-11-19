@@ -6,21 +6,21 @@ import StudentList from './src/StudentList.js';
 const sampleStudents = [
   {
     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    firstName: 'Student1',
-    lastName: 'One',
-    phoneNumber: '+14025987648'
+    'first_name': 'Student 1',
+    'last_name': 'One',
+    'phone_number': '+14025987648'
   },
   {
     id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    firstName: 'Student2',
-    lastName: 'Two',
-    phoneNumber: '+14025987648'
+    'first_name': 'Student 2',
+    'last_name': 'Two',
+    'phone_number': '+14025987648'
   },
   {
     id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    firstName: 'Student3',
-    lastName: 'Three',
-    phoneNumber: '+14025987648'
+    'first_name': 'Student 3',
+    'last_name': 'Three',
+    'phone_number': '+14025987648'
   },
 ];
 
@@ -28,14 +28,22 @@ export default class App extends Component {
   state = { students: [] };
 
   componentDidMount() {
-    this.setState({ students: sampleStudents })
+    return fetch('http://localhost:19002/api/class/1')
+      .then((response) => response.json())
+      .then((responseJson) => this.setState({ students: responseJson }))
+      .catch((error) => console.log(error));
   }
 
   render() {
+    let readyToRender = (this.state.students.length > 0) ? true : false;
     return (
       <View style={styles.container}>
         <Text style={styles.title}>CheckerTexter</Text>
-        <StudentList students={this.state.students}/>
+        {readyToRender ? (
+          <StudentList students={this.state.students}/>
+        ) : (
+          <StudentList students={sampleStudents}/>
+        )}
       </View>
     );
   }

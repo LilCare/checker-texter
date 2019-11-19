@@ -17,9 +17,9 @@ export default function StudentList(props) {
       <FlatList
         data={props.students}
         renderItem={({ item }) => 
-          <Student firstName={item.firstName} lastName={item.lastName} />
+          <Student firstName={item['first_name']} lastName={item['last_name']} />
         }
-        keyExtractor={item => item.id}
+        keyExtractor={item => item.id.toString()}
       />
     </SafeAreaView>
   );
