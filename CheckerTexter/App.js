@@ -39,6 +39,10 @@ export default class App extends Component {
     return (
       <View style={styles.container}>
         <Text style={styles.title}>CheckerTexter</Text>
+        <View style={styles.assignmentContainer}>
+          <Text style={styles.assignment}>Assignment: MVP</Text>
+          <Text style={[styles.assignment, styles.date]}>Date: 11/19/19</Text>
+        </View>
         {readyToRender ? (
           <StudentList students={this.state.students}/>
         ) : (
@@ -60,10 +64,19 @@ const styles = StyleSheet.create({
     marginTop: Constants.statusBarHeight,
     padding: 8,
     letterSpacing: 3,
-    fontSize: 22,
+    fontSize: 20,
     fontWeight: 'bold',
     alignContent: 'center',
     backgroundColor: '#182f40', 
     color: '#afbab5',
-  }
+  },
+  assignmentContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  assignment: {
+    fontSize: 16,
+    letterSpacing: 1,
+    fontWeight: 'bold',
+  },
 });

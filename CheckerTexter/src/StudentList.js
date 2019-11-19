@@ -31,9 +31,7 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   item: {
-    backgroundColor: '#81ccb0',
-    backgroundColor: '#b3cc81',
-    backgroundColor: '#e8eda6',
+    backgroundColor: '#EFF2C0',
     flexDirection: 'row',
     justifyContent: 'space-between',
     flex: 1,

@@ -18,9 +18,7 @@ class ScoreSelect2 extends Component {
           animationType="slide"
           transparent={false}
           visible={this.state.modalVisible}
-          onDismiss={() => {
-            Alert.alert(`Selected "${this.state.selected}"`);
-          }}>
+        >
           <View style={{marginTop: 22}}>
             <View style={styles.picker}>     
               <Picker
