@@ -23,6 +23,10 @@ class StudentList extends Component {
       .catch((error) => console.log(error));
   }
 
+  renderFooter() {
+    return <SelectTexts saveScores={this.saveScores.bind(this)}/>
+  }
+
   updateScores(studentIndex, score) {
     this.setState((oldState) => {
       oldState.students[studentIndex].score = score;
@@ -37,6 +41,7 @@ class StudentList extends Component {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
+      body: JSON.stringify({students: this.state.students})
     });
   }
 
@@ -54,7 +59,7 @@ class StudentList extends Component {
               <Student firstName={item['first_name']} lastName={item['last_name']} index={index} updateScores={this.updateScores.bind(this)} />
             }
             keyExtractor={item => item.id.toString()}
-            ListFooterComponent={SelectTexts}
+            ListFooterComponent={this.renderFooter.bind(this)}
           />
         ) : (
           <Indicator/>
