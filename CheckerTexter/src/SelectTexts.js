@@ -56,6 +56,17 @@ class SelectTexts extends Component {
       this.setState({step: state});
     }
 
+    goBack() {
+      if (this.state.step[0] === 'save') {
+        this.setState({modalVisible: false});  
+      } else {
+        let state = this.state.step;
+        let lastStep = state.pop();
+        state.unshift(lastStep);
+        this.setState({step: state});
+      }
+    }
+
     textFamilies() {
       // generate an array of scores to text
       let scores = [];
@@ -127,6 +138,7 @@ class SelectTexts extends Component {
               switchModal={this.switchModal.bind(this)}
               saveScores={this.props.saveScores}
               textFamilies={this.textFamilies.bind(this)}
+              goBack={this.goBack.bind(this)}
             />
             
           </View>

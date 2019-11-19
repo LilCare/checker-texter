@@ -1,7 +1,7 @@
 import React from 'react';
 import {Modal, Text, TouchableOpacity, View, StyleSheet} from 'react-native';
 
-function SaveAndText ({visible, step, switchModal, saveScores, textFamilies}) {
+function SaveAndText ({visible, step, switchModal, saveScores, textFamilies, goBack}) {
   // step can equal 'save', 'text', complete
   console.log('step');
   let stepFunction = () => {};
@@ -25,16 +25,31 @@ function SaveAndText ({visible, step, switchModal, saveScores, textFamilies}) {
         presentationStyle='fullScreen'
       >
         <View style={{marginTop: 22}}>
-          <View style={styles.modal}>     
-            <TouchableOpacity
-              onPress={() => {
-                switchModal();
-                stepFunction();
-              }}
-              style={styles.stepForward}
-            >
-            <Text style={[styles.font, styles.select]}>{stepForwardText}</Text>
-            </TouchableOpacity>
+          <View style={styles.modal}>
+
+            <View>
+              <TouchableOpacity
+                onPress={() => {
+                    switchModal();
+                    stepFunction();
+                }}
+                style={styles.stepForward}
+                >
+                <Text style={[styles.font, styles.select]}>{stepForwardText}</Text>
+              </TouchableOpacity>
+            </View> 
+
+            <View style={{marginTop: 22}}>
+              <TouchableOpacity
+                onPress={() => {
+                    goBack();
+                }}
+                style={styles.goBack}
+                >
+                <Text style={[styles.font, styles.select]}>Go back</Text>
+              </TouchableOpacity>
+            </View>
+
           </View>
         </View>
       </Modal>
@@ -65,12 +80,24 @@ const styles = StyleSheet.create({
         color: '#afbab5',
         fontWeight: 'bold',
     },
+    back: {
+        padding: 8,
+        fontSize: 18,
+        color: '#afbab5',
+        fontWeight: 'bold',
+    },
     stepForward: {
         padding: 16,
         fontSize: 20,
         alignContent: 'center',
         backgroundColor: '#182f40',  
         color: '#afbab5',
+        borderRadius: 5,
+    },
+    goBack: {
+        marginTop: 8,
+        alignContent: 'center',
+        backgroundColor: '#182f40',  
         borderRadius: 5,
     }
 })
