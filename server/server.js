@@ -1,5 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
+const db = require('./data/index.js')
 
 const app = express();
 
@@ -9,6 +10,18 @@ app.use(morgan('dev'));
 
 app.get('/test', (req, res) => {
   res.send('server get test');
+})
+
+app.get('/api/class/:id', (req, res) => {
+  const classId = req.params.id
+  db.getClasslist(classId, (err, classlist) => {
+    if (err) {
+      console.log('error getting classlist to server: ', err);
+      res.send(err);
+    } else {
+      res.send(classlist);
+    }
+  })
 })
 
 

@@ -9,14 +9,19 @@ const pool = new Pool({
 })
 
 const getClasslist = (classId, callback) => {
-  const text = 'select * from students where class_id = $1';
+//   id | class_id | first_name |  last_name  | phone_number 
+//   ----+----------+------------+-------------+--------------
+//   27 |        1 | Varun      | Arora       | +14025987648
+//   25 |        1 | Richard    | Cao         | +14025987648
+//   19 |        1 | Lily       | Carey       | +14025987648
+  const text = 'SELECT * FROM students WHERE class_id = $1 ORDER BY last_name ASC';
   const values = [classId];
 
   pool
     .query(text, values)
     .then(res => {
       console.log('get classList response: ', res.rows);
-      return callback(null, res.rows[0]);
+      return callback(null, res.rows);
     })
     .catch(e => callback(e));
 }
@@ -73,12 +78,31 @@ const insertScore = (scoreInfo, callback) => {
       .catch(e => callback(e));
 }
 
-
+const getScoreInfo = (assignmentId, studentId, callback) => {
+    // Sample query return from db:
+    // first_name | phone_number |  score   
+    //------------+--------------+----------
+    // Avery      | +14025987648 | complete
+    const text = `SELECT students.first_name, students.phone_number, scores.score
+                  FROM students INNER JOIN scores
+                  ON students.id = scores.student_id
+                  WHERE assignment_id = $1 AND student_id = $2`;
+    const values = [assignmentId, studentId];
+  
+    pool
+      .query(text, values)
+      .then(res => {
+        console.log('insert score response: ', res.rows);
+        return callback(null, res.rows);
+      })
+      .catch(e => callback(e));
+}
 
 module.exports = {
     getClasslist,
     insertClass,
     insertStudent,
     insertAssignment,
-    insertScore
+    insertScore,
+    getScoreInfo
 }
