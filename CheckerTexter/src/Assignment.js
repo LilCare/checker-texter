@@ -1,8 +1,8 @@
 import React from 'react';
 import { Modal, Text, TouchableOpacity, View, StyleSheet, DatePickerIOS, TextInput } from 'react-native';
 
-function Assignment ({setModalInvisible, setTitle, setDate, visible, assignment}) {
- 
+function Assignment ({setModalInvisible, setTitle, setDate, saveAssignment, visible, assignment}) {
+
   return (
     <View >
       <Modal
@@ -20,8 +20,8 @@ function Assignment ({setModalInvisible, setTitle, setDate, visible, assignment}
             <TextInput
               style={[styles.font, styles.titleInput]}
               placeholder="Assignment Title"
-              onChange={ e => setTitle(e.nativeEvent.text) }
-              value={assignment.title}
+              onChange={ (e) => setTitle(e.nativeEvent.text) }
+              value={assignment}
             />
 
             <Text style={[styles.font, styles.label]}>Date:</Text>

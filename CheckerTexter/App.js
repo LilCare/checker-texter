@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import moment from 'moment';
 import Constants from 'expo-constants';
 import StudentList from './src/StudentList.js';
 import Indicator from './src/ActivityIndicator.js';
@@ -10,7 +11,8 @@ class App extends Component {
     modalVisible: true,
     assignment: {
       title: '',
-      date: '11/19/19',
+      date: moment().format('MM/DD/YY'),
+      id: 0,
     },
   }
 
@@ -19,17 +21,36 @@ class App extends Component {
   }
 
   setTitle(title) {
-    console.log(title);
     let assignment = this.state.assignment;
     assignment.title = title;
     this.setState({ assignment });
   }
 
   setDate(date) {
-    console.log(date)
-    // let assignment = this.state.assignment;
-    // assignment.date = date;
-    // this.setState({ assignment });
+    const assignmentDate = moment(date).format('MM/DD/YY')
+    let assignment = this.state.assignment;
+    assignment.date = assignmentDate;
+    this.setState({ assignment });
+  }
+
+  setId(id) {
+    let assignment = this.state.assignment;
+    assignment.id = id;
+    this.setState({ id })
+  }
+
+  saveAssignment() {
+    return fetch('http://localhost:19002/api/assignment', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(this.state.assignment),
+    })
+      .then( (response) => response.json() )
+      .then( (response) => console.log(response) )
+      .catch( (err)=> console.log(err) );
   }
 
   render() {
@@ -40,8 +61,9 @@ class App extends Component {
           setModalInvisible={this.setModalInvisible.bind(this)}
           setTitle={this.setTitle.bind(this)}
           setDate={this.setDate.bind(this)}
+          saveAssignment={this.saveAssignment.bind(this)}
           visible={this.state.modalVisible}
-          assignment={this.state.assignment}
+          assignment={this.state.assignment.title}
         />
         <Text style={styles.title}>CheckerTexter</Text>
         <View style={styles.assignmentContainer}>
