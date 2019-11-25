@@ -78,7 +78,7 @@ class SelectTexts extends Component {
         scores.push('incomplete');
       }
 
-      fetch('http://localhost:19002/api/assignment/2/texts', {
+      fetch(`http://localhost:19002/api/assignment/${this.props.assignmentId}/texts`, {
         method: 'POST',
         headers: {
           Accept: 'application/json',

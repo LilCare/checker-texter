@@ -24,7 +24,7 @@ class StudentList extends Component {
   }
 
   renderFooter() {
-    return <SelectTexts saveScores={this.saveScores.bind(this)}/>
+    return <SelectTexts saveScores={this.saveScores.bind(this)} assignmentId={this.props.assignmentId}/>
   }
 
   updateScores(studentIndex, score) {
@@ -34,8 +34,8 @@ class StudentList extends Component {
     });
   }
 
-  saveScores(assignmentId) {
-    fetch('http://localhost:19002/api/assignment/2/scores', {
+  saveScores() {
+    fetch(`http://localhost:19002/api/assignment/${this.props.assignmentId}/scores`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',

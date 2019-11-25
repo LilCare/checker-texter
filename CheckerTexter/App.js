@@ -74,7 +74,7 @@ class App extends Component {
           <Text style={styles.assignment}>{this.state.assignment.title}</Text>
           <Text style={[styles.assignment, styles.date]}>Due Date: {this.state.assignment.date}</Text>
         </View>
-        <StudentList />   
+        <StudentList assignmentId={this.state.assignment.id} />   
       </View>
     );
   }

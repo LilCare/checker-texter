@@ -74,7 +74,7 @@ const insertScore = (studentId, assignmentId, score, callback) => {
     pool
       .query(text, values)
       .then(res => {
-        console.log('insert score response: ', res.rows);
+        // console.log('insert score response: ', res.rows);
         return callback(null, res.rows);
       })
       .catch(e => callback(e));

@@ -51,13 +51,11 @@ app.post('/api/class/:id/assignment', jsonParser, (req, res) => {
     date: clientAssignment.date,
     classId
   }
-  console.log(assignment)
   db.insertAssignment(assignment, (err, assignmentId) => {
     if (err) {
       console.log('error getting classlist to server: ', err);
       res.send(err);
     } else {
-      console.log('assignmentId: ', assignmentId)
       res.json(assignmentId);
     }
   });
