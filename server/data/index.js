@@ -60,7 +60,7 @@ const insertAssignment = (assignment, callback) => {
       .query(text, values)
       .then(res => {
         // console.log('insert assignment response: ', res.rows);
-        return callback(null, res.rows);
+        return callback(null, res.rows[0]);
       })
       .catch(e => callback(e));
 }

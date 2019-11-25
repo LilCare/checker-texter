@@ -33,7 +33,7 @@ function Assignment ({setModalInvisible, setTitle, setDate, saveAssignment, visi
             />
 
             <TouchableOpacity
-              onPress={() => setModalInvisible(false)} 
+              onPress={() => { setModalInvisible(false); saveAssignment(); }} 
               style={styles.createAssignment}
             >
               <Text style={[ styles.select ]}>Create Assignment</Text>

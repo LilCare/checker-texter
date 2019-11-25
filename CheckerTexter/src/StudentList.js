@@ -18,9 +18,9 @@ class StudentList extends Component {
 
   componentDidMount() {
     return fetch('http://localhost:19002/api/class/1')
-      .then((response) => response.json())
-      .then((responseJson) => this.setState({ students: responseJson }))
-      .catch((error) => console.log(error));
+      .then( (response) => response.json() )
+      .then( (responseJson) => this.setState({ students: responseJson }) )
+      .catch( (error) => console.log(error) );
   }
 
   renderFooter() {

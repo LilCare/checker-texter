@@ -40,7 +40,7 @@ class App extends Component {
   }
 
   saveAssignment() {
-    return fetch('http://localhost:19002/api/assignment', {
+    return fetch('http://localhost:19002/api/class/1/assignment', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -49,8 +49,12 @@ class App extends Component {
       body: JSON.stringify(this.state.assignment),
     })
       .then( (response) => response.json() )
-      .then( (response) => console.log(response) )
-      .catch( (err)=> console.log(err) );
+      .then( (responseJson) => {
+        let assignment = this.state.assignment;
+        assignment.id = responseJson.id;
+        this.setState({ assignment })
+      })
+      .catch( (err)=> console.log('err from response: ', err) );
   }
 
   render() {

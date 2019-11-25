@@ -6,7 +6,7 @@ const Promise = require('bluebird');
 const db = require('./data/index.js');
 const texter = require('./twilio/send_sms.js');
 
-const port = 19002
+const port = 19002;
 
 const app = express();
 
@@ -21,7 +21,7 @@ const promiseCallback = (err, response) => {
   } else {
       return response;
   }
-}
+};
 
 app.use(cors());
 
@@ -29,7 +29,7 @@ app.use(morgan('dev'));
 
 app.get('/test', (req, res) => {
   res.send('server get test');
-})
+});
 
 app.get('/api/class/:id', (req, res) => {
   const classId = req.params.id;
@@ -40,8 +40,28 @@ app.get('/api/class/:id', (req, res) => {
     } else {
       res.send(classlist);
     }
-  })
-})
+  });
+});
+
+app.post('/api/class/:id/assignment', jsonParser, (req, res) => {
+  const classId = req.params.id ;
+  const clientAssignment = req.body;
+  let assignment = {
+    title: clientAssignment.title,
+    date: clientAssignment.date,
+    classId
+  }
+  console.log(assignment)
+  db.insertAssignment(assignment, (err, assignmentId) => {
+    if (err) {
+      console.log('error getting classlist to server: ', err);
+      res.send(err);
+    } else {
+      console.log('assignmentId: ', assignmentId)
+      res.json(assignmentId);
+    }
+  });
+});
 
 app.post('/api/assignment/:id/scores', jsonParser, (req, res) => {
   const assignmentId = req.params.id;
@@ -54,9 +74,9 @@ app.post('/api/assignment/:id/scores', jsonParser, (req, res) => {
     return db.insertScore(studentId, assignmentId, score, promiseCallback)
   })
   .then((results) => res.send(results))
-  .catch((err) => res.send(err))
+  .catch((err) => res.send(err));
   
-})
+});
 
 app.post('/api/assignment/:id/texts', jsonParser, (req, res) => {
   const assignmentId = req.params.id;
@@ -76,8 +96,8 @@ app.post('/api/assignment/:id/texts', jsonParser, (req, res) => {
   })
   .then(() => res.send())
   .catch((err) => res.send(err));
-})
+});
 
 app.listen(port, () => {
   console.log('Server listening on port', port)
-})
+});
