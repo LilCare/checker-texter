@@ -77,8 +77,7 @@ const styles = StyleSheet.create({
         marginTop: 22,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#afbab5', 
-        // color: '#afbab5',
+        height: 500,
     },
     scoreContainer: {
         backgroundColor: '#849cad',
@@ -90,13 +89,15 @@ const styles = StyleSheet.create({
         fontSize: 14,
         letterSpacing: 1.5,
         padding: 8,
-
     },
     select: {
         fontSize: 20,
-        padding: 8,
+        paddingVertical: 8,
+        paddingHorizontal: 16,
         color: '#182f40',
         fontWeight: 'bold',
+        backgroundColor: '#afbab5',
+        borderRadius: 5,
     }
 })
 

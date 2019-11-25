@@ -3,7 +3,6 @@ import {Modal, Text, TouchableOpacity, View, StyleSheet} from 'react-native';
 
 function SaveAndText ({visible, step, switchModal, saveScores, textFamilies, goBack}) {
   // step can equal 'save', 'text', complete
-  console.log('step');
   let stepFunction = () => {};
   let stepForwardText = '';
   if (step === 'save') {
