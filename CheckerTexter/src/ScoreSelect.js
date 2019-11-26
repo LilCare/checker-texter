@@ -34,7 +34,14 @@ class ScoreSelect extends Component {
         >
           <View style={{flex: 1}}>
             <View style={{flex: 1}} />
-            <View style={styles.picker}>    
+            <View style={styles.picker}>  
+
+              <TouchableOpacity
+                onPress={() => {
+                  this.setModalVisible(!this.state.modalVisible);
+                }}>
+                <Text style={[styles.font, styles.select]}>Done with selection</Text>
+              </TouchableOpacity>  
 
               <Picker
                 selectedValue={this.state.selected}
@@ -45,9 +52,6 @@ class ScoreSelect extends Component {
                   
                   // Call updateScore function to store changed score for that student
                   this.props.updateScores(this.props.index, itemValue);
-
-                  // Set modal Invisible
-                  this.setModalVisible(!this.state.modalVisible);
                 }}>
 
                 <Picker.Item label="Complete" value="complete" />
@@ -90,6 +94,15 @@ const styles = StyleSheet.create({
         letterSpacing: 1.5,
         padding: 8,
     },
+    select: {
+      fontSize: 20,
+      paddingVertical: 8,
+      paddingHorizontal: 100,
+      color: '#182F40',
+      fontWeight: 'bold',
+      backgroundColor: '#AFBAB5',
+      borderRadius: 5,
+  }
 })
 
 export default ScoreSelect;
