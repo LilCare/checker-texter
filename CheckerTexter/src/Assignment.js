@@ -1,49 +1,53 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Modal, Text, TouchableOpacity, View, StyleSheet, DatePickerIOS, TextInput } from 'react-native';
 
-function Assignment ({setModalInvisible, setTitle, setDate, saveAssignment, visible, assignment}) {
-
-  return (
-    <View >
-      <Modal
-        animationType="none"
-        transparent={false}
-        visible={visible}
-        presentationStyle="fullScreen"
-      >
-        <View style={{ marginTop: 22 }}>
-          <View style={styles.modal}>
-
-            <Text style={styles.directions}>Enter the title and date for the assignment</Text>
-            
-            {/* <Text style={[styles.font, styles.label]}>Title:</Text> */}
-            <TextInput
-              style={[styles.font, styles.titleInput]}
-              placeholder="Assignment Title"
-              onChange={ (e) => setTitle(e.nativeEvent.text) }
-              value={assignment}
-            />
-
-            {/* <Text style={[styles.font, styles.label]}>Date:</Text> */}
-            <DatePickerIOS
-              style={[styles.font, styles.dateInput]}
-              mode="date"
-              date={new Date()}
-              onDateChange={ e => setDate(e)}
-            />
-
-            <TouchableOpacity
-              onPress={() => { setModalInvisible(false); saveAssignment(); }} 
-              style={styles.createAssignment}
-            >
-              <Text style={[ styles.select ]}>Create Assignment</Text>
-            </TouchableOpacity>
-
+class Assignment extends Component {
+  state = {
+    title: '',
+    date: new Date(),
+  }
+  
+  render() {
+    return (
+      <View >
+        <Modal
+          animationType="none"
+          transparent={false}
+          visible={this.props.visible}
+          presentationStyle="fullScreen"
+        >
+          <View style={{ marginTop: 22 }}>
+            <View style={styles.modal}>
+  
+              <Text style={styles.directions}>Enter the title and date for the assignment</Text>
+              
+              <TextInput
+                style={[styles.font, styles.titleInput]}
+                placeholder="Assignment Title"
+                onChange={ (e) => this.setState({title: e.nativeEvent.text}) }
+                value={this.state.title}
+              />
+  
+              <DatePickerIOS
+                style={[styles.font, styles.dateInput]}
+                mode="date"
+                date={this.state.date}
+                onDateChange={ e => this.setState({date: e}) }
+              />
+  
+              <TouchableOpacity
+                onPress={() => { this.props.setModalInvisible(false); this.props.setTitleAndDate(this.state.title, this.state.date) }} 
+                style={styles.createAssignment}
+              >
+                <Text style={[ styles.select ]}>Create Assignment</Text>
+              </TouchableOpacity>
+  
+            </View>
           </View>
-        </View>
-      </Modal>
-    </View>
-  );
+        </Modal>
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({

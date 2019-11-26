@@ -90,17 +90,6 @@ const styles = StyleSheet.create({
         letterSpacing: 1.5,
         padding: 8,
     },
-    // select: {
-    //     fontSize: 20,
-    //     paddingVertical: 8,
-    //     paddingHorizontal: 16,
-    //     color: '#182f40',
-    //     fontWeight: 'bold',
-    //     backgroundColor: '#afbab5',
-    //     alignItems: 'center',
-    //     borderRadius: 5,
-    //     width: 375,
-    // }
 })
 
 export default ScoreSelect;

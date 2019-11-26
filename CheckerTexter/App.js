@@ -20,15 +20,10 @@ class App extends Component {
     this.setState({modalVisible: invisible});
   }
 
-  setTitle(title) {
+  setTitleAndDate(title, date) {
     let assignment = this.state.assignment;
+    const assignmentDate = moment(date).format('MM/DD/YY');
     assignment.title = title;
-    this.setState({ assignment });
-  }
-
-  setDate(date) {
-    const assignmentDate = moment(date).format('MM/DD/YY')
-    let assignment = this.state.assignment;
     assignment.date = assignmentDate;
     this.setState({ assignment });
   }
@@ -39,7 +34,7 @@ class App extends Component {
     this.setState({ id })
   }
 
-  saveAssignment() {
+  componentDidMount() {
     return fetch('http://localhost:19002/api/class/1/assignment', {
       method: 'POST',
       headers: {
@@ -63,11 +58,8 @@ class App extends Component {
       <View style={styles.container}>
         <Assignment
           setModalInvisible={this.setModalInvisible.bind(this)}
-          setTitle={this.setTitle.bind(this)}
-          setDate={this.setDate.bind(this)}
-          saveAssignment={this.saveAssignment.bind(this)}
+          setTitleAndDate={this.setTitleAndDate.bind(this)}
           visible={this.state.modalVisible}
-          assignment={this.state.assignment.title}
         />
         <Text style={styles.title}>CheckerTexter</Text>
         <View style={styles.assignmentContainer}>
