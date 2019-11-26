@@ -28,11 +28,14 @@ class ScoreSelect extends Component {
       <View style={[styles.scoreContainer, {backgroundColor: scoreColor}]}>
         <Modal
           animationType="slide"
-          transparent={false}
+          transparent={true}
           visible={this.state.modalVisible}
+          style={{flex: 1}}
         >
-          <View style={{marginTop: 22}}>
-            <View style={styles.picker}>     
+          <View style={{flex: 1}}>
+            <View style={{flex: 1}} />
+            <View style={styles.picker}>    
+
               <Picker
                 selectedValue={this.state.selected}
                 style={{width: 100, justifyContent: 'flex-start'}}
@@ -42,6 +45,9 @@ class ScoreSelect extends Component {
                   
                   // Call updateScore function to store changed score for that student
                   this.props.updateScores(this.props.index, itemValue);
+
+                  // Set modal Invisible
+                  this.setModalVisible(!this.state.modalVisible);
                 }}>
 
                 <Picker.Item label="Complete" value="complete" />
@@ -51,12 +57,6 @@ class ScoreSelect extends Component {
 
               </Picker>
 
-              <TouchableOpacity
-                onPress={() => {
-                  this.setModalVisible(!this.state.modalVisible);
-                }}>
-                <Text style={[styles.font, styles.select]}>Done with selection</Text>
-              </TouchableOpacity>
             </View>
           </View>
         </Modal>
@@ -74,10 +74,10 @@ class ScoreSelect extends Component {
 
 const styles = StyleSheet.create({
     picker: {
-        marginTop: 22,
         alignItems: 'center',
         justifyContent: 'center',
-        height: 500,
+        backgroundColor: 'white',
+        marginBottom: 22
     },
     scoreContainer: {
         backgroundColor: '#849cad',
@@ -90,15 +90,17 @@ const styles = StyleSheet.create({
         letterSpacing: 1.5,
         padding: 8,
     },
-    select: {
-        fontSize: 20,
-        paddingVertical: 8,
-        paddingHorizontal: 16,
-        color: '#182f40',
-        fontWeight: 'bold',
-        backgroundColor: '#afbab5',
-        borderRadius: 5,
-    }
+    // select: {
+    //     fontSize: 20,
+    //     paddingVertical: 8,
+    //     paddingHorizontal: 16,
+    //     color: '#182f40',
+    //     fontWeight: 'bold',
+    //     backgroundColor: '#afbab5',
+    //     alignItems: 'center',
+    //     borderRadius: 5,
+    //     width: 375,
+    // }
 })
 
 export default ScoreSelect;
