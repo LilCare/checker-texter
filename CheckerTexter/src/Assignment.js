@@ -55,7 +55,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#afbab5', 
     backgroundColor: 'white', 
     alignContent:'stretch',
-    
     // color: '#afbab5',
   },
   directions: {
