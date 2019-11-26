@@ -15,7 +15,7 @@ function SaveAndText ({visible, step, switchModal, saveScores, textFamilies, goB
     stepForwardText = 'Text families for selected scores';
     TextDisplay = () => (
       <View style={styles.textDisplay}>
-        <Text style={styles.displayLabel}>Here is the outline of the message that will be sent to each family:</Text>
+        <Text style={styles.displayLabel}>Below is the outline of the message that will be sent to each family:</Text>
         <View style={styles.textContainer}>
           <Text style={styles.font}>Just a heads up: [STUDENT FIRST NAME]'s homework is [STUDENT SCORE]. Thanks for checking in on them later!</Text>
         </View>
@@ -55,7 +55,7 @@ function SaveAndText ({visible, step, switchModal, saveScores, textFamilies, goB
                 }}
                 style={styles.goBack}
                 >
-                <Text style={[styles.font, styles.select]}>Go back</Text>
+                <Text style={[styles.font, styles.back]}>Go back</Text>
               </TouchableOpacity>
             )}
 
@@ -77,11 +77,10 @@ const styles = StyleSheet.create({
       // color: '#afbab5',
     },
     textDisplay: {
-      marginBottom: 20,
-      marginHorizontal: 10,
+      margin: 20,
     },
     displayLabel: {
-      fontSize: 18,
+      fontSize: 20,
       color: '#182f40',
       alignContent: 'center',
       letterSpacing: 1.5,
@@ -89,10 +88,10 @@ const styles = StyleSheet.create({
     },
     textContainer:{
       backgroundColor: 'white',
-      borderRadius: 3,
+      borderRadius: 5,
       borderColor:'#182f40',
       borderWidth: 1,
-      height: 200,
+      height: 125,
     },
     font: {
       fontSize: 16,
@@ -108,13 +107,13 @@ const styles = StyleSheet.create({
     },
     back: {
       padding: 8,
-      fontSize: 18,
+      fontSize: 14,
       color: '#afbab5',
       fontWeight: 'bold',
     },
     stepForward: {
-      padding: 16,
-      fontSize: 20,
+      // padding: 8,
+      fontSize: 18,
       alignContent: 'center',
       backgroundColor: '#182f40',  
       color: '#afbab5',
